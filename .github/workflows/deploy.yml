@@ -1,0 +1,25 @@
+name: Deploy to Cloudflare Workers
+on:
+  push:
+    branches:
+      - main  # 监听main分支的推送事件
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18  # 使用Node.js 18+，满足Wrangler要求
+          
+      - name: Install Wrangler
+        run: npm install -g wrangler@4.15.2  # 安装指定版本Wrangler
+        
+      - name: Deploy to Cloudflare Workers
+        run: wrangler deploy
+        env:
+          CF_API_TOKEN: ${{Dhd6nels--G8yBbJQ8IHdpExbHN_8x_NXvoODsC9}}
+          CF_ACCOUNT_ID: ${{0c9734c0cb834633a9eb034123653ec4}}
